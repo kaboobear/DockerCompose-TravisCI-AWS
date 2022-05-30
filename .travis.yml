@@ -1,5 +1,5 @@
 sudo: required
-services: 
+services:
   - docker
 
 before_install:
@@ -13,7 +13,7 @@ after_success:
   - docker build -t 29081998/multi-server -f ./server
   - docker build -t 29081998/multi-worker -f ./worker
   - docker build -t 29081998/multi-nginx -f ./nginx
-  - docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push 29081998/multi-client
   - docker push 29081998/multi-server
   - docker push 29081998/multi-worker
