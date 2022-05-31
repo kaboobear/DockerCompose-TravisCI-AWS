@@ -9,10 +9,10 @@ script:
   - docker run -e CI=true 29081998/docker npm test
 
 after_success:
-  - docker build -t 29081998/multi-client -f ./client
-  - docker build -t 29081998/multi-server -f ./server
-  - docker build -t 29081998/multi-worker -f ./worker
-  - docker build -t 29081998/multi-nginx -f ./nginx
+  - docker build -t 29081998/multi-client ./client
+  - docker build -t 29081998/multi-server ./server
+  - docker build -t 29081998/multi-worker ./worker
+  - docker build -t 29081998/multi-nginx ./nginx
   - echo "$DOCKER_PASS" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push 29081998/multi-client
   - docker push 29081998/multi-server
